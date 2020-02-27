@@ -1,18 +1,18 @@
 {% set name = "dagster_slack" %}
-{% set version = "0.6.5" %}
+{% set version = "0.7.2" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: b4e8621ea99df5a058ff9ce340c9ce684db86c0dbecb7aa7556affcc01a52871
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('_', '-') }}-{{ version }}.tar.gz
+  sha256: ae111ed861fac46c9cb69ad0ace01fc68a30fe4a1e6b5cfb61acc434bcbce570
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -29,11 +29,11 @@ test:
     - dagster_slack
 
 about:
-  home: "https://github.com/dagster-io/dagster/tree/master/python_modules/libraries/dagster-slack"
+  home: https://github.com/dagster-io/dagster/tree/master/python_modules/libraries/dagster-slack
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
-  summary: "A Slack client resource for posting to Slack"
+  summary: A Slack client resource for posting to Slack
 
 extra:
   recipe-maintainers:
